@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Barcelona & Med 2026 — Family Input</title>
+<style>
+  :root{
+    --bg:#f6f7fb; --card:#ffffff; --text:#171923; --muted:#667085; --line:#e7e9ef;
+    --accent:#2563eb; --accent2:#0f766e; --warn:#b45309; --soft:#eef4ff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
+  .wrap{max-width:920px;margin:0 auto;padding:24px 16px 80px}
+  .hero{background:linear-gradient(135deg,#102a43,#2563eb);color:#fff;border-radius:24px;padding:28px}
+  h1{font-size:30px;line-height:1.08;margin:0 0 8px}
+  h2{font-size:22px;margin:30px 0 12px}
+  h3{font-size:18px;margin:0 0 8px}
+  p{line-height:1.5}
+  .muted{color:var(--muted)}
+  .hero .muted{color:#d7e3ff}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+  .activity{margin-bottom:12px}
+  .meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+  .tag{font-size:12px;padding:5px 9px;border-radius:999px;background:#f1f3f6;color:#475467}
+  .tag.book{background:#fff3e8;color:var(--warn)}
+  .tag.gf{background:#e8f7f3;color:var(--accent2)}
+  .choice{display:flex;gap:8px;flex-wrap:wrap}
+  .choice label{border:1px solid var(--line);border-radius:12px;padding:9px 12px;cursor:pointer;background:#fff}
+  .choice input{margin-right:6px}
+  select, textarea, input[type=text]{width:100%;padding:12px;border:1px solid #cfd4dc;border-radius:12px;background:#fff;font:inherit}
+  textarea{min-height:96px;resize:vertical}
+  .section-note{padding:12px 14px;border-radius:14px;background:#eef4ff;color:#233876;margin-bottom:12px}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  button{appearance:none;border:0;border-radius:12px;padding:12px 16px;font-weight:700;cursor:pointer}
+  .primary{background:var(--accent);color:#fff}
+  .secondary{background:#e9edf5;color:#243043}
+  #output{min-height:260px}
+  .sticky{position:sticky;bottom:12px;margin-top:24px}
+  .sticky .bar{background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.08);border-radius:16px;padding:12px;display:flex;gap:10px}
+  .sticky button{flex:1}
+  .small{font-size:13px}
+  @media(max-width:700px){
+    .grid{grid-template-columns:1fr}
+    h1{font-size:26px}
+    .hero{padding:22px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <h1>Barcelona & Mediterranean 2026</h1>
+    <p class="muted">Oct 1–12 · Family preferences & ideas</p>
+    <p>Please fill this in for your family. Choose what you’d like to join, skip, or keep optional — and add any ideas we should consider. At the end, tap <b>Generate summary</b> and send the copied text to Amir on WhatsApp.</p>
+  </section>
+
+  <h2>1. Who is answering?</h2>
+  <div class="card">
+    <label for="family"><b>Family</b></label>
+    <select id="family">
+      <option value="">Choose family…</option>
+      <option>Amir & Maya — Dor (8), Gali (6)</option>
+      <option>Roni & Caroline</option>
+      <option>Tal & Lital — Sahar (17), Gaya (13), Barak (10)</option>
+      <option>Danny & Sharon — Roni (13), Michael (10)</option>
+    </select>
+    <div style="height:12px"></div>
+    <label for="names"><b>Who from your family is likely to join most activities?</b></label>
+    <input id="names" type="text" placeholder="e.g. Tal, Lital, Gaya and Barak" />
+  </div>
+
+  <h2>2. Barcelona — pick per activity</h2>
+  <div class="section-note small">Most of us have already been to Barcelona, so each activity is independent. “Maybe” is totally fine.</div>
+
+  <div id="barcelona">
+    <div class="card activity" data-title="Sagrada Família">
+      <h3>Sagrada Família</h3>
+      <p class="muted">Priority sight. Suggested for Friday morning.</p>
+      <div class="meta"><span class="tag book">Book ahead</span><span class="tag">Timed entry</span></div>
+      <div class="choice">
+        <label><input type="radio" name="sf" value="JOIN">Join</label>
+        <label><input type="radio" name="sf" value="MAYBE">Maybe</label>
+        <label><input type="radio" name="sf" value="SKIP">Skip</label>
+      </div>
+    </div>
+
+    <div class="card activity" data-title="Park Güell">
+      <h3>Park Güell</h3>
+      <p class="muted">Good family option; more walking and uphill sections.</p>
+      <div class="meta"><span class="tag book">Book ahead</span></div>
+      <div class="choice">
+        <label><input type="radio" name="pg" value="JOIN">Join</label>
+        <label><input type="radio" name="pg" value="MAYBE">Maybe</label>
+        <label><input type="radio" name="pg" value="SKIP">Skip</label>
+      </div>
+    </div>
+
+    <div class="card activity" data-title="Gothic Quarter + El Born">
+      <h3>Gothic Quarter + El Born</h3>
+      <p class="muted">Flexible walking, shops, food and old-city atmosphere.</p>
+      <div class="meta"><span class="tag">Flexible</span></div>
+      <div class="choice">
+        <label><input type="radio" name="gothic" value="JOIN">Join</label>
+        <label><input type="radio" name="gothic" value="MAYBE">Maybe</label>
+        <label><input type="radio" name="gothic" value="SKIP">Skip</label>
+      </div>
+    </div>
+
+    <div class="card activity" data-title="Passeig de Gràcia / Casa Batlló / La Pedrera">
+      <h3>Passeig de Gràcia / Casa Batlló / La Pedrera</h3>
+      <p class="muted">Easy arrival-day option. Interior visits only if wanted.</p>
+      <div class="meta"><span class="tag">Flexible</span><span class="tag book">Book if going inside</span></div>
+      <div class="choice">
+        <label><input type="radio" name="gracia" value="JOIN">Join</label>
+        <label><input type="radio" name="gracia" value="MAYBE">Maybe</label>
+        <label><input type="radio" name="gracia" value="SKIP">Skip</label>
+      </div>
+    </div>
+
+    <div class="card activity" data-title="Montjuïc / cable car / fountain area">
+      <h3>Montjuïc / cable car / fountain area</h3>
+      <p class="muted">Fountain show only if operating on our dates.</p>
+      <div class="meta"><span class="tag">Conditional</span></div>
+      <div class="choice">
+        <label><input type="radio" name="mont" value="JOIN">Join</label>
+        <label><input type="radio" name="mont" value="MAYBE">Maybe</label>
+        <label><input type="radio" name="mont" value="SKIP">Skip</label>
+      </div>
+    </div>
+
+    <div class="card activity" data-title="Kid/family activity">
+      <h3>One kid/family activity</h3>
+      <p class="muted">We’ll choose later: Tibidabo, CosmoCaixa, Aquarium, Barça, cable car, etc.</p>
+      <div class="meta"><span class="tag">Decision later</span></div>
+      <div class="choice">
+        <label><input type="radio" name="kids" value="JOIN">Interested</label>
+        <label><input type="radio" name="kids" value="MAYBE">Maybe</label>
+        <label><input type="radio" name="kids" value="SKIP">Not needed</label>
+      </div>
+    </div>
+
+    <div class="card activity" data-title="Can Pizza Universitat">
+      <h3>Can Pizza Universitat</h3>
+      <p class="muted">Planned food stop. Good gluten-free relevance.</p>
+      <div class="meta"><span class="tag gf">GF relevant</span><span class="tag book">Reserve for group</span></div>
+      <div class="choice">
+        <label><input type="radio" name="canpizza" value="JOIN">Join</label>
+        <label><input type="radio" name="canpizza" value="MAYBE">Maybe</label>
+        <label><input type="radio" name="canpizza" value="SKIP">Skip</label>
+      </div>
+    </div>
+
+    <div class="card activity" data-title="Los Caracoles">
+      <h3>Los Caracoles</h3>
+      <p class="muted">Historic Barcelona restaurant.</p>
+      <div class="meta"><span class="tag book">Reserve for group</span></div>
+      <div class="choice">
+        <label><input type="radio" name="caracoles" value="JOIN">Join</label>
+        <label><input type="radio" name="caracoles" value="MAYBE">Maybe</label>
+        <label><input type="radio" name="caracoles" value="SKIP">Skip</label>
+      </div>
+    </div>
+  </div>
+
+  <h2>3. Cruise ports — what sounds worth it?</h2>
+  <div class="section-note small">We are trying to avoid expensive cruise-line excursions and organize independently where practical.</div>
+
+  <div id="ports">
+    <div class="card activity" data-title="Palma — short city outing">
+      <h3>Oct 5 · Palma</h3>
+      <p class="muted">Option: short morning in Palma — cathedral, old town, lunch — or stay on the ship.</p>
+      <div class="choice">
+        <label><input type="radio" name="palma" value="JOIN SHORT PALMA">Short Palma outing</label>
+        <label><input type="radio" name="palma" value="SHIP DAY">Stay on ship</label>
+        <label><input type="radio" name="palma" value="MAYBE">Maybe / weather dependent</label>
+      </div>
+    </div>
+
+    <div class="card activity" data-title="Marseille — ship day">
+      <h3>Oct 6 · Marseille</h3>
+      <p class="muted">Current proposal: deliberately stay on the ship.</p>
+      <div class="choice">
+        <label><input type="radio" name="marseille" value="SHIP DAY">Stay on ship</label>
+        <label><input type="radio" name="marseille" value="WANT TO GET OFF">I want to get off</label>
+        <label><input type="radio" name="marseille" value="MAYBE">Maybe</label>
+      </div>
+    </div>
+
+    <div class="card activity" data-title="La Spezia — Pisa + Lucca">
+      <h3>Oct 7 · La Spezia</h3>
+      <p class="muted">Current proposal: Pisa + Lucca with private group transport.</p>
+      <div class="meta"><span class="tag book">Private transport</span></div>
+      <div class="choice">
+        <label><input type="radio" name="laspezia" value="JOIN">Join</label>
+        <label><input type="radio" name="laspezia" value="MAYBE">Maybe</label>
+        <label><input type="radio" name="laspezia" value="SKIP">Skip / ship</label>
+      </div>
+    </div>
+
+    <div class="card activity" data-title="Rome — Colosseum + central Rome">
+      <h3>Oct 8 · Rome</h3>
+      <p class="muted">Current proposal: Colosseum + central Rome, private transport, no Vatican overload.</p>
+      <div class="meta"><span class="tag book">Book ahead</span><span class="tag book">Private transport</span></div>
+      <div class="choice">
+        <label><input type="radio" name="rome" value="JOIN">Join</label>
+        <label><input type="radio" name="rome" value="MAYBE">Maybe</label>
+        <label><input type="radio" name="rome" value="SKIP">Skip / ship</label>
+      </div>
+    </div>
+
+    <div class="card activity" data-title="Naples — Pompeii + Naples">
+      <h3>Oct 9 · Naples</h3>
+      <p class="muted">Current proposal: Pompeii with family-friendly guide, then Naples + pizza.</p>
+      <div class="meta"><span class="tag book">Guide + transport</span><span class="tag gf">GF food planning</span></div>
+      <div class="choice">
+        <label><input type="radio" name="naples" value="JOIN">Join</label>
+        <label><input type="radio" name="naples" value="MAYBE">Maybe</label>
+        <label><input type="radio" name="naples" value="SKIP">Skip / ship</label>
+      </div>
+    </div>
+  </div>
+
+  <h2>4. Your ideas / requests</h2>
+  <div class="grid">
+    <div class="card">
+      <label for="must"><b>Anything you really want to do?</b></label>
+      <textarea id="must" placeholder="Restaurants, sights, shopping, sports, beaches, specific places…"></textarea>
+    </div>
+    <div class="card">
+      <label for="avoid"><b>Anything you’d rather avoid?</b></label>
+      <textarea id="avoid" placeholder="Long walking days, museums, specific ports, early starts…"></textarea>
+    </div>
+    <div class="card">
+      <label for="food"><b>Food / dietary notes</b></label>
+      <textarea id="food" placeholder="Allergies, gluten-free, vegetarian, must-eat places…"></textarea>
+    </div>
+    <div class="card">
+      <label for="mobility"><b>Pace / mobility considerations</b></label>
+      <textarea id="mobility" placeholder="Stairs, walking limits, stroller, prefer taxis, need breaks…"></textarea>
+    </div>
+  </div>
+
+  <h2>5. Generate your WhatsApp summary</h2>
+  <div class="card">
+    <p class="muted small">Your choices stay on this device. Nothing is sent automatically.</p>
+    <div class="btns">
+      <button class="primary" data-action="generate">Generate summary</button>
+      <button class="secondary" data-action="copy">Copy for WhatsApp</button>
+    </div>
+    <div id="status" class="small" style="margin-top:10px;color:#0f766e;font-weight:600"></div>
+    <div style="height:12px"></div>
+    <textarea id="output" readonly placeholder="Your summary will appear here…"></textarea>
+  </div>
+
+  <div class="sticky">
+    <div class="bar">
+      <button class="primary" data-action="generate">Generate</button>
+      <button class="secondary" data-action="copy">Copy</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  function byId(id) { return document.getElementById(id); }
+
+  function pick(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : "No answer";
+  }
+
+  function line(label, name) {
+    return "• " + label + ": " + pick(name);
+  }
+
+  function generateSummary() {
+    var family = byId('family').value || "Not selected";
+    var names = byId('names').value.trim();
+    var must = byId('must').value.trim() || "—";
+    var avoid = byId('avoid').value.trim() || "—";
+    var food = byId('food').value.trim() || "—";
+    var mobility = byId('mobility').value.trim() || "—";
+
+    var out = [
+      "BARCELONA & MED 2026 — FAMILY INPUT",
+      "",
+      "Family: " + family,
+      "Likely participants: " + (names || "—"),
+      "",
+      "BARCELONA",
+      line("Sagrada Família", "sf"),
+      line("Park Güell", "pg"),
+      line("Gothic Quarter + El Born", "gothic"),
+      line("Passeig de Gràcia / Casa Batlló / La Pedrera", "gracia"),
+      line("Montjuïc / fountain area", "mont"),
+      line("Kid/family activity", "kids"),
+      line("Can Pizza Universitat", "canpizza"),
+      line("Los Caracoles", "caracoles"),
+      "",
+      "CRUISE PORTS",
+      line("Palma", "palma"),
+      line("Marseille", "marseille"),
+      line("La Spezia — Pisa + Lucca", "laspezia"),
+      line("Rome", "rome"),
+      line("Naples — Pompeii + Naples", "naples"),
+      "",
+      "REQUESTS / IDEAS",
+      "• Really want: " + must,
+      "• Prefer to avoid: " + avoid,
+      "• Food / dietary: " + food,
+      "• Pace / mobility: " + mobility
+    ].join("\n");
+
+    byId('output').value = out;
+    byId('status').textContent = "Summary generated — copy it below or tap Copy for WhatsApp.";
+    byId('output').focus();
+    return out;
+  }
+
+  function fallbackCopy(text) {
+    var o = byId('output');
+    o.value = text;
+    o.removeAttribute('readonly');
+    o.focus();
+    o.select();
+    o.setSelectionRange(0, o.value.length);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    o.setAttribute('readonly', 'readonly');
+    byId('status').textContent = ok
+      ? "Copied — paste it into WhatsApp."
+      : "Summary generated. Select the text below and copy it manually.";
+  }
+
+  function copySummary() {
+    var text = generateSummary();
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () {
+        byId('status').textContent = "Copied — paste it into WhatsApp.";
+      }).catch(function () {
+        fallbackCopy(text);
+      });
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    var genButtons = document.querySelectorAll('[data-action="generate"]');
+    var copyButtons = document.querySelectorAll('[data-action="copy"]');
+    for (var i = 0; i < genButtons.length; i++) {
+      genButtons[i].addEventListener('click', generateSummary);
+    }
+    for (var j = 0; j < copyButtons.length; j++) {
+      copyButtons[j].addEventListener('click', copySummary);
+    }
+  });
+})();
+</script>
+</body>
+</html>
